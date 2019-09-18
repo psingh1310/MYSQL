@@ -1,0 +1,60 @@
+
+
+DDL (CAN NOT BE ROLLED BACK)
+
+Create
+Drop - drop the structure + data
+truncate - delete only data
+
+DML 
+
+insert
+update
+delete
+
+
+DCL
+
+Commit
+Rollback
+
+
+create USER <user_name>@localhost identified by 'password'
+
+Previleges - select, update, delete, create,drop  [*.*]
+
+Grant
+Revoke
+
+1) creating the database
+2) creating tables
+3) applying constraints - PK, FK
+4) inserting the values
+5) updating the data
+6) deleting the data
+7) selecting the data
+8) selecting using where clause AND , OR
+9) selecting using where clause AND , OR Use Count(*), sum, max, min, avg, abs
+10) using Rollback 
+11) using Commit
+12) Creating user
+13) granting previleges to user
+14) revoking previleges from user
+
+Ways of commit
+
+1) when autocommit =1
+2) exit the session
+3) Execute any DDL Command (create, drop, alter)
+4) Commit timing set by DBA
+
+
+
+
+
+
+
+
+
+
+
