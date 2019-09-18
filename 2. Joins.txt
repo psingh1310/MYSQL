@@ -1,0 +1,38 @@
+Create table student (StudentID varchar(10),name varchar(20),City varchar(20),Age int(10))
+
+insert into student values('1','Amit','Mumbai',20);
+insert into student values('2','Nirav','Pune',22);
+insert into student values('3','Ankita','Indore',21);
+insert into student values('4','Rohan','Jalgaon',20);
+insert into student values('5','Sania','Sinnar',19);
+insert into student values('6','Aasif','Malegoan',22);
+insert into student values('7','Reema','Pune',21);
+insert into student values('8','Sonam','Mumbai',20);
+
+Create table studentcourse (CourseID varchar(10),coursename varchar(20),studentid varchar(20))
+
+insert into studentcourse values('1','Java','1');
+insert into studentcourse values('2','MySQL','2');
+insert into studentcourse values('2','MySQL','3');
+insert into studentcourse values('3','Python','4');
+insert into studentcourse values('1','Java','5');
+insert into studentcourse values('4','Scala','9');
+insert into studentcourse values('5','Hadoop','10');
+insert into studentcourse values('4','Scala','10');
+
+Simple Join/EquiJoin
+select name,coursename from student join studentcourse on student.studentid=studentcourse.studentid;
+
+Right
+select name,coursename from student right join studentcourse on student.studentid=studentcourse.studentid;
+
+Left
+select name,coursename from student left join studentcourse on student.studentid=studentcourse.studentid;
+
+
+
+
+
+
+
+

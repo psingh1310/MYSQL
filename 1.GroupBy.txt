@@ -1,0 +1,53 @@
+use classicmodels
+Tables needed
+
+Employees
+President
+Orders
+
+
+
+
+Employees
+Select jobtitle, count(jobtitle) from employees group by jobtitle;
+
+President
+select state,count(state) from president group by state
+
+orders
+select status,count(status) from orders where year(shippedDate)=2005 group by status
+
+
+1. Group By
+
+
+1) SELECT status FROM orders GROUP BY status;
+
+2) SELECT status, COUNT(*) FROM orders GROUP BY status
+
+3) SELECT orderNumber, SUM(quantityOrdered * priceEach) AS total
+FROM orderdetails GROUP BY orderNumber
+
+
+2.Join 
+
+4) SELECT YEAR(orderDate) AS year, SUM(quantityOrdered * priceEach) AS total FROM orders INNER JOIN orderdetails USING (orderNumber) WHERE status = 'Shipped' GROUP BY YEAR(orderDate); 
+
+5) SELECT YEAR(orderDate) AS year, SUM(quantityOrdered * priceEach) AS total FROM orders INNER JOIN orderdetails USING (orderNumber) WHERE status = 'Shipped' GROUP BY YEAR(orderDate) having year > 2003;
+
+2. Having
+
+1) SELECT YEAR(orderDate) AS year, SUM(quantityOrdered * priceEach) AS total, status
+FROM orders INNER JOIN orderdetails USING (orderNumber) WHERE status = 'Shipped' GROUP BY YEAR(orderDate) having year > 2003;
+
+
+SELECT YEAR(orderDate) AS year, SUM(quantityOrdered * priceEach) AS total
+FROM orders INNER JOIN orderdetails USING (orderNumber) GROUP BY YEAR(orderDate)
+
+
+
+2) SELECT ordernumber, SUM(quantityOrdered) AS itemsCount,
+    SUM(priceeach*quantityOrdered) AS total FROM orderdetails
+GROUP BY ordernumber HAVING total > 1000 AND itemsCount > 600
+
+

@@ -1,0 +1,40 @@
+ 
+CREATE TABLE u1 (
+    id INT PRIMARY KEY
+);
+ 
+CREATE TABLE u2 (
+    id INT PRIMARY KEY
+);
+ 
+INSERT INTO u1 VALUES (1),(2),(3);
+INSERT INTO u2 VALUES (2),(3),(4);
+
+
+Union
+select * from u1 UNION select * from u2
+ 
+UNION ALL
+select * from u1 UNION ALL select * from u2
+
+Intersect (directly do not work)
+
+select id from u1 where id in (select id from u2);
+
+
+
+
+
+SELECT firstName,lastName FROM employees 
+UNION 
+SELECT contactFirstName, contactLastName FROM customers;
+
+
+SELECT concat(firstName," ",lastName) FROM employees 
+UNION 
+SELECT concat(contactFirstName," ", contactLastName) FROM customers ;
+
+
+
+
+
