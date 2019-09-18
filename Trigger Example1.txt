@@ -1,0 +1,53 @@
+CREATE TABLE parts (
+    part_no VARCHAR(18) PRIMARY KEY,
+    description VARCHAR(40),
+    cost DECIMAL(10 , 2 ) NOT NULL,
+    price DECIMAL(10,2) NOT NULL
+);
+
+----------------------------------------------
+DELIMITER $$
+
+CREATE PROCEDURE check_parts(IN cost DECIMAL(10,2), IN price DECIMAL(10,2))
+BEGIN
+    IF cost < 0.0 THEN SIGNAL SQLSTATE '45003'
+            SET MESSAGE_TEXT = 'Sorry Cost can not be less then zero';
+    END IF;
+    IF price < 0 THEN SIGNAL SQLSTATE '45004'
+ SET MESSAGE_TEXT = 'Sorry Price can not be less then zero';
+    END IF;
+    IF price < cost THEN SIGNAL SQLSTATE '45005'
+           SET MESSAGE_TEXT = 'Sorry Price can not be less then cost';
+    END IF;
+END $$
+DELIMITER ;
+------------------------------------------------------------
+
+-- before insert
+DELIMITER $$
+
+CREATE TRIGGER parts_before_insert BEFORE INSERT ON parts
+FOR EACH ROW
+BEGIN
+    CALL check_parts(NEW.cost,NEW.price);
+END$$   
+DELIMITER ; 
+
+-- before update
+DELIMITER $$
+CREATE TRIGGER parts_before_update BEFORE UPDATE ON parts
+FOR EACH ROW
+BEGIN
+    CALL check_parts(new.cost,new.price);
+END$$   
+DELIMITER ;
+
+--------------------------------------------------------------
+--Value Inserts
+INSERT INTO parts(part_no, description,cost,price) VALUES('A-002','Heater',-100,120);
+
+INSERT INTO parts(part_no, description,cost,price) VALUES('A-002','Heater',100,-120);
+
+INSERT INTO parts(part_no, description,cost,price) VALUES('A-002','Heater',100, 20);
+
+

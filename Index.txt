@@ -1,0 +1,14 @@
+
+CREATE [UNIQUE|FULLTEXT|SPATIAL] INDEX index_name
+USING [BTREE | HASH | RTREE] 
+ON table_name (column_name [(length)] [ASC | DESC],...)
+
+CREATE INDEX idx_officeCode ON employees(officeCode)
+
+DROP INDEX officeCode ON employees
+
+
+To see index on table
+----------------------
+SELECT DISTINCT TABLE_NAME,INDEX_NAME FROM INFORMATION_SCHEMA.STATISTICS
+WHERE TABLE_SCHEMA = <database_name> <-- change with your database name
