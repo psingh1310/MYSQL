@@ -196,7 +196,10 @@ show full tables;
 update vcustomer set contact='1234567890' where firstname = 'amir';
 select firstname,contact from customer limit 2;
 select distinct(Gender) from customer;
- 
+
+
+##### FUNCTIONS AND PROCEDURES
+
 
 set global log_bin_trust_function_creators=1;
 
